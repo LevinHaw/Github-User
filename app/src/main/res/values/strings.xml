@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">UserApplication</string>
+    <string name="searchbar_hint">Cari data user</string>
+    <string name="github_user">username</string>
+    <string name="id">id</string>
+    <string name="tab_Following">Following</string>
+    <string name="tab_Followers">Followers</string>
+
+    <string name="follower">Follower : %1$d</string>
+    <string name="following">Following : %1$d</string>
+
+    <string name="profile_name">Profile Name</string>
+    <string name="username">username</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
