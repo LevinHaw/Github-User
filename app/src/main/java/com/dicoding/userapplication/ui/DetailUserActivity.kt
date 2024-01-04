@@ -84,11 +84,15 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
         private fun setDetailUser(detailUserResponse: DetailUserResponse) {
-        binding.tvProfile.text = detailUserResponse.login
-        binding.tvUsername.text = detailUserResponse.name
-        binding.tvFollowing.text = resources.getString(R.string.following, detailUserResponse.following)
-        binding.tvFollowers.text = resources.getString(R.string.follower, detailUserResponse.followers)
-        Glide.with(binding.root.context)
+
+            binding?.apply {
+                tvProfile.text = detailUserResponse.login
+                tvUsername.text = detailUserResponse.name
+                tvFollowing.text = resources.getString(R.string.following, detailUserResponse.following)
+                tvFollowers.text = resources.getString(R.string.follower, detailUserResponse.followers)
+            }
+
+            Glide.with(binding.root.context)
             .load(detailUserResponse.avatarUrl)
             .circleCrop()
             .into(binding.ivProfile)
