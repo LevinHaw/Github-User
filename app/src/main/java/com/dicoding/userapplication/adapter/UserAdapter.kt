@@ -34,7 +34,7 @@ class UserAdapter: ListAdapter<ItemsItem, UserAdapter.ListViewHolder>(DIFF_CALLB
         fun bind(user: ItemsItem){
             binding.root.setOnClickListener {
                 val intent = Intent(itemView.context, DetailUserActivity::class.java)
-                intent.putExtra(DetailUserActivity.ITEM_ID, user.login)
+                intent.putExtra(DetailUserActivity.EXTRA_ID, user.login)
                 itemView.context.startActivity(intent)
             }
             Glide.with(itemView.context)

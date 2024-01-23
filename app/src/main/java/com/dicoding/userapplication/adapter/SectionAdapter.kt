@@ -9,7 +9,7 @@ import com.dicoding.userapplication.ui.TabFragment
 
 class SectionAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
 
-    private var username: String? = activity.intent.getStringExtra(DetailUserActivity.ITEM_ID)
+    private var username: String? = activity.intent.getStringExtra(DetailUserActivity.EXTRA_ID)
 
     override fun getItemCount(): Int {
         return 2
