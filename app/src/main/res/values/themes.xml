@@ -6,4 +6,22 @@
     </style>
 
     <style name="Theme.UserApplication" parent="Base.Theme.UserApplication" />
+
+    <style name="TextLarge" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BackgroundCard" parent="Base.CardView">
+        <item name="android:src">@drawable/bg_purple</item>
+    </style>
+
+
 </resources>

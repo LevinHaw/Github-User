@@ -4,7 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="12dp">
+    app:cardCornerRadius="5dp"
+    android:layout_margin="5dp"
+    app:cardElevation="8dp">
+
+    <ImageView
+        style="@style/BackgroundCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,30 +30,25 @@
 
         <TextView
             android:id="@+id/tv_username"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
             android:layout_marginTop="25dp"
+            android:layout_marginStart="20dp"
             android:text="@string/github_user"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            style="@style/TextLarge"
             app:layout_constraintStart_toEndOf="@id/civ_avatar"
             app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView
             android:id="@+id/tv_account"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
             android:layout_marginTop="5dp"
             android:text="@string/id"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            style="@style/TextMedium"
             app:layout_constraintStart_toStartOf="@id/tv_username"
             app:layout_constraintTop_toBottomOf="@id/tv_username" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

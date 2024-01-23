@@ -10,18 +10,29 @@ import com.bumptech.glide.Glide
 import com.dicoding.userapplication.R
 import com.dicoding.userapplication.adapter.SectionAdapter
 import com.dicoding.userapplication.databinding.ActivityDetailUserBinding
+import com.dicoding.userapplication.repository.data.local.database.FavoriteUser
 import com.dicoding.userapplication.repository.data.remote.response.DetailUserResponse
 import com.dicoding.userapplication.viewmodel.DetailUserViewModel
+import com.dicoding.userapplication.viewmodel.FavoriteUserViewModel
+import com.dicoding.userapplication.viewmodel.FavoriteUserViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
+    private var favoriteUser = FavoriteUser()
+
     private val detailUserViewModel by viewModels<DetailUserViewModel>()
+
+    private val favoriteUserViewModel by viewModels<FavoriteUserViewModel> {
+        FavoriteUserViewModelFactory.getInstance(this.applicationContext)
+    }
 
 
     companion object{
-        const val ITEM_ID = "item_id"
+        const val EXTRA_ID = "extra_id"
+        const val EXTRA_URL = "extra_url"
+
         private val TAB_TITLE = intArrayOf(
             R.id.tvFollowing,
             R.id.tvFollowers
@@ -33,13 +44,32 @@ class DetailUserActivity : AppCompatActivity() {
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val items = intent.getStringExtra(ITEM_ID)
+        val items = intent.getStringExtra(EXTRA_ID)
 
         detailUserViewModel.setDetailUser(detailUserId = items.toString())
         supportActionBar?.hide()
 
         detailUserViewModel.detailUser.observe(this) { detailUser ->
             setDetailUser(detailUser)
+
+            favoriteUser.let {
+                favoriteUser.username = detailUser.login!!
+                favoriteUser.avatarUrl = detailUser.avatarUrl
+            }
+        }
+
+        favoriteUserViewModel.getAllFavoriteUserByUsername(items.toString()).observe(this){
+            if (it != null) {
+                binding.fabFavorite.setImageResource(R.drawable.ic_favorite)
+                binding.fabFavorite.setOnClickListener {
+                    favoriteUserViewModel.delete(favoriteUser)
+                }
+            } else {
+                binding.fabFavorite.setImageResource(R.drawable.ic_favorite_outline)
+                binding.fabFavorite.setOnClickListener {
+                    favoriteUserViewModel.insert(favoriteUser)
+                }
+            }
         }
 
         val sectionsPagerAdapter = SectionAdapter(this)
@@ -83,16 +113,16 @@ class DetailUserActivity : AppCompatActivity() {
         return super.onContextItemSelected(item)
     }
 
-        private fun setDetailUser(detailUserResponse: DetailUserResponse) {
+    private fun setDetailUser(detailUserResponse: DetailUserResponse) {
 
-            binding?.apply {
-                tvProfile.text = detailUserResponse.login
-                tvUsername.text = detailUserResponse.name
-                tvFollowing.text = resources.getString(R.string.following, detailUserResponse.following)
-                tvFollowers.text = resources.getString(R.string.follower, detailUserResponse.followers)
-            }
+        binding?.apply {
+            tvProfile.text = detailUserResponse.login
+            tvUsername.text = detailUserResponse.name
+            tvFollowing.text = resources.getString(R.string.following, detailUserResponse.following)
+            tvFollowers.text = resources.getString(R.string.follower, detailUserResponse.followers)
+        }
 
-            Glide.with(binding.root.context)
+        Glide.with(binding.root.context)
             .load(detailUserResponse.avatarUrl)
             .circleCrop()
             .into(binding.ivProfile)
