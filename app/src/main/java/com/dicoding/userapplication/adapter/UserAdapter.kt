@@ -42,7 +42,6 @@ class UserAdapter: ListAdapter<ItemsItem, UserAdapter.ListViewHolder>(DIFF_CALLB
                 .circleCrop()
                 .into(binding.civAvatar)
             binding.tvUsername.text = user.login
-            binding.tvAccount.text = user.id.toString()
         }
     }
 

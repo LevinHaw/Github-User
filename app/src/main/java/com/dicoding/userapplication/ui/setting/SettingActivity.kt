@@ -19,6 +19,8 @@ class SettingActivity : AppCompatActivity() {
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Setting"
+
         val pref = SettingPreference.getInstance(application.dataStore)
         val settingViewModel = ViewModelProvider(this, SettingViewModelFactory(pref)).get(
             SettingViewModel::class.java

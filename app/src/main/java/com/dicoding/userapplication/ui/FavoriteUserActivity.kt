@@ -22,6 +22,7 @@ class FavoriteUserActivity : AppCompatActivity() {
         binding = ActivityFavoriteUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.show()
         supportActionBar?.title = "Favorite user"
 
         val layoutManager = LinearLayoutManager(this)

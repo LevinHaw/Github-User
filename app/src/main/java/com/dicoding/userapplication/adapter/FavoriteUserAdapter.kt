@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.userapplication.databinding.ItemListUserBinding
-
 import com.dicoding.userapplication.repository.data.local.database.FavoriteUser
 
 class FavoriteUserAdapter: ListAdapter<FavoriteUser, FavoriteUserAdapter.FavoriteViewHolder>(DIFF_CALLBACK) {
